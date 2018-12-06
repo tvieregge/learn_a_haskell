@@ -1,1 +1,1 @@
-Working through "Learn Youa Haskell for Great Good" by Miran Lipovača
+Working through "Learn You a Haskell for Great Good" by Miran Lipovača
