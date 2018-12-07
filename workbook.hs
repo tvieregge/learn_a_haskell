@@ -88,3 +88,26 @@ treeElem x (Node a left right)
   | x == a = True
   | x < a = treeElem x left
   | x > a = treeElem x right
+
+class YesNo a where
+    yesno :: a -> Bool
+
+instance YesNo Int where
+    yesno 0 = False
+    yesno _ = True
+
+instance YesNo [a] where
+    yesno [] = False
+    yesno _ = True
+
+instance YesNo Bool where
+    yesno = id
+
+instance YesNo (Maybe a) where
+    yesno (Just _) = True
+    yesno Nothing = False
+
+tree is true-ish:
+instance YesNo (Tree a) where
+    yesno EmptyTree = False
+    yesno _ = True
