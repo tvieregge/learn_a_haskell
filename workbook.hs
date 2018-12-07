@@ -2,6 +2,9 @@ import qualified Data.Map as Map
 import Data.List
 import Data.Char
 
+-- A bunch more stuff about OO haskell in chapter 7
+import Geometry.Sphere
+
 doubleSmallNum x = if x > 100
                       then x
                       else x*2
