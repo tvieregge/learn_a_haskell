@@ -107,7 +107,6 @@ instance YesNo (Maybe a) where
     yesno (Just _) = True
     yesno Nothing = False
 
-tree is true-ish:
 instance YesNo (Tree a) where
     yesno EmptyTree = False
     yesno _ = True
