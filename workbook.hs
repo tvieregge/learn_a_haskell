@@ -110,3 +110,28 @@ instance YesNo (Maybe a) where
 instance YesNo (Tree a) where
     yesno EmptyTree = False
     yesno _ = True
+
+instance Functor Tree where
+    fmap f EmptyTree = EmptyTree
+    fmap f (Node x left right) = Node (f x) (fmap f left) (fmap f right)
+
+--data Either a b = Left a | Right b
+-- instance Functor (Either a) where
+--     fmap f (Right x) = Right (f x)
+--     fmap f (Left x) = Left x
+
+-- class Functor f where
+--     fmap :: (a -> b) -> f a -> f b
+--
+-- (v -> v') -> Map k v -> Map k v'
+-- instance Functor (Map k) where
+--     fmap f x = map f x
+
+class MyFunctor f where
+    myFmap :: (a -> b) -> f a -> f b
+    myFmap' :: (a -> b) -> f a -> f b
+
+instance (Ord k) => MyFunctor (Map.Map k) where
+    myFmap f a = Map.map f a
+    myFmap' f a = Map.fromList $ map (\(p,q) -> (p, (f q))) (Map.toList a)
+
