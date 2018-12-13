@@ -1,0 +1,4 @@
+*.o
+*.hi
+bigfile.txt
+temp
