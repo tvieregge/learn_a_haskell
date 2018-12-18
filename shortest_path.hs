@@ -13,7 +13,15 @@ graph = [ Section 50 10 30
         ]
 
 main = do
-    print $ shortest_path graph
+    contents <- getContents
+    let input = groupsOf 3 (map read $ lines contents)
+        inputSyetem = map (\a b c -> Section a b c) input
+    print $ shortest_path inputSystem
+
+groupsOf :: Int -> [a] -> [[a]]
+groupsOf 0 _ = undefined
+groupsOf _ [] = []
+groupsOf n xs = take n xs : groupsOf n (drop n xs)
 
 shortest_path :: RoadSystem -> Path
 shortest_path system =
