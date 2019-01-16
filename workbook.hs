@@ -1,7 +1,7 @@
 import qualified Data.Map as Map
 import Data.List
 import Data.Char
-
+import qualified Data.Foldable as F
 -- A bunch more stuff about OO haskell in chapter 7
 import Geometry.Sphere
 
@@ -135,3 +135,23 @@ instance (Ord k) => MyFunctor (Map.Map k) where
     myFmap f a = Map.map f a
     myFmap' f a = Map.fromList $ map (\(p,q) -> (p, (f q))) (Map.toList a)
 
+testTree = Node 5
+            (Node 3
+                (Node 1 EmptyTree EmptyTree)
+                (Node 6 EmptyTree EmptyTree)
+            )
+            (Node 9
+                (Node 8 EmptyTree EmptyTree)
+                (Node 10 EmptyTree EmptyTree)
+            )
+
+bTestTree = (Node True
+             (Node False EmptyTree EmptyTree)
+             (Node True EmptyTree EmptyTree)
+            )
+
+instance F.Foldable Tree where
+    foldMap f EmptyTree = mempty
+    foldMap f (Node x l r) = F.foldMap f l `mappend`
+                             f x `mappend`
+                             F.foldMap f r
